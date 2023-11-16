@@ -1,7 +1,7 @@
 const ccBgColor01 = document.querySelector(".cc-bg svg > g g:nth-child(1) path")
 const ccBgColor02 = document.querySelector(".cc-bg svg > g g:nth-child(2) path")
 
-const ccLogo = document.querySelector(".cc-logo span:nth-child(2) img")
+const ccLogo = document.getElementById("iconCard")
 
 function setCardType(type) {
   const colors = {
@@ -14,7 +14,7 @@ function setCardType(type) {
   ccBgColor01.setAttribute("fill", colors[type][0])
   ccBgColor02.setAttribute("fill", colors.mastercard)
 
-  ccLogo.setAttribute("src", `./public/cc-${type}.svg`)
+  ccLogo.setAttribute("src", `/public/cc-${type}.svg`)
 }
 
 globalThis.setCardType = setCardType
