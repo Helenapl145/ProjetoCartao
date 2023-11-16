@@ -18,7 +18,7 @@ Projeto feito a partir da semana Explore Lab da Rocketseat.
 <br>
 
 <p align="center">
-  <img alt="rocketpay" src=".github/project.png" width="100%">
+  <img alt="rocketpay" src="/public/preview.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias

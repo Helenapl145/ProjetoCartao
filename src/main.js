@@ -1,6 +1,3 @@
-import "./css/index.css"
-import Imask from "imask"
-
 const ccBgColor01 = document.querySelector(".cc-bg svg > g g:nth-child(1) path")
 const ccBgColor02 = document.querySelector(".cc-bg svg > g g:nth-child(2) path")
 
@@ -17,16 +14,14 @@ function setCardType(type) {
   ccBgColor01.setAttribute("fill", colors[type][0])
   ccBgColor02.setAttribute("fill", colors.mastercard)
 
-  ccLogo.setAttribute("src", `cc-${type}.svg`)
+  ccLogo.setAttribute("src", `/public/cc-${type}.svg`)
 }
-
-
 
 globalThis.setCardType = setCardType
 
 const securityCode = document.querySelector("#security-code")
 const securityPattern = {
-  mask: "0000"
+  mask: "0000",
 }
 const securityCodeMasked = IMask(securityCode, securityPattern)
 
@@ -42,9 +37,9 @@ const expirationPattern = {
     YY: {
       mask: IMask.MaskedRange,
       from: String(new Date().getFullYear()).slice(2),
-      to: String(new Date().getFullYear() + 10).slice(2)
+      to: String(new Date().getFullYear() + 10).slice(2),
     },
-  }
+  },
 }
 const expirationDateMasked = IMask(expirationDate, expirationPattern)
 
@@ -64,12 +59,12 @@ const cardNumberPattern = {
     {
       mask: "0000 0000 0000 0000",
       regex: /^3[47]\d{0,13}/,
-      cardtype: "american"
+      cardtype: "american",
     },
     {
       mask: "0000 0000 0000 0000",
-      cardtype: "default"
-    }
+      cardtype: "default",
+    },
   ],
   dispatch: function (appended, dynamicMasked) {
     const number = (dynamicMasked.value + appended).replace(/\D/g, "")
@@ -86,22 +81,23 @@ const cardNumberPattern = {
 const cardNumberMasked = IMask(cardNumber, cardNumberPattern)
 
 const addButton = document.querySelector("#add-card")
-addButton.addEventListener("click", () =>{
+addButton.addEventListener("click", () => {
   alert("Cartão adicionado!!")
 })
 
-document.querySelector("form").addEventListener("submit", (event) =>{
+document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault()
 })
 
 const cardHolder = document.querySelector("#card-holder")
-cardHolder.addEventListener("input", () =>{
+cardHolder.addEventListener("input", () => {
   const ccHolder = document.querySelector(".cc-holder .value")
 
-  ccHolder.innerText = cardHolder.value.length === 0 ? "FULANO DA SILVA" : cardHolder.value 
+  ccHolder.innerText =
+    cardHolder.value.length === 0 ? "FULANO DA SILVA" : cardHolder.value
 })
 
-securityCodeMasked.on("accept", () =>{
+securityCodeMasked.on("accept", () => {
   updateSecurityCode(securityCodeMasked.value)
 })
 
